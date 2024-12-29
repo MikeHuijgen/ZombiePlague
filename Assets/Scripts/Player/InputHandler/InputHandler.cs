@@ -6,6 +6,7 @@ using UnityEngine;
 public class InputHandler : MonoBehaviour
 {
     [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private Gun gun;
     private PlayerInputMap _playerInputMap;
     
     private void Awake()
@@ -23,9 +24,9 @@ public class InputHandler : MonoBehaviour
         playerMovement.Move(_playerInputMap.Movement.Move.ReadValue<Vector2>());
         playerMovement.Turn(_playerInputMap.Movement.Turn.ReadValue<Vector2>());
         
-        if (_playerInputMap.Combat.Shoot.IsPressed())
+        if (_playerInputMap.Combat.Shoot.triggered)
         {
-            print("shoot");
+            gun.Shoot();
         }
     }
     
