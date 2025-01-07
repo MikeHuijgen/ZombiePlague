@@ -10,8 +10,9 @@ public class Gun : MonoBehaviour
     public void Shoot()
     {
         if (!Physics.Raycast(transform.position, transform.forward, out RaycastHit hit)) return;
-        
-        Debug.DrawLine(transform.position, hit.transform.position, Color.red, .5f);
+
+        var distanceBetweenHit = Vector3.Distance(transform.position, hit.point);
+        Debug.DrawRay(transform.position, transform.forward * distanceBetweenHit, Color.red, .5f);
 
         if (!hit.transform.TryGetComponent(out Health health)) return;
         
