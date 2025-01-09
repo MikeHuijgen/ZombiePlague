@@ -9,22 +9,29 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float turnSpeed;
 
     private Rigidbody _rigidbody;
+    private Vector2 _moveInputValue;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
-    
-    void Update()
-    {
-        Shoot();
-    }
 
     public void Move(Vector2 moveInputValue)
     {
-        if (moveInputValue == Vector2.zero) return;
+        /*if (moveInputValue == Vector2.zero) return;
         
-        transform.Translate(new Vector3(moveInputValue.x * speed * Time.deltaTime, 0, moveInputValue.y * speed * Time.deltaTime), Space.World);
+        transform.Translate(new Vector3(moveInputValue.x * speed * Time.deltaTime, 0, moveInputValue.y * speed * Time.deltaTime), Space.World);*/
+    }
+
+    private void FixedUpdate()
+    {
+        if (_moveInputValue == Vector2.zero)
+        {
+            _rigidbody.velocity = Vector3.zero;
+            return;
+        }
+        
+        _rigidbody.velocity = new Vector3(_moveInputValue.x * speed, 0, _moveInputValue.y * speed);
     }
 
     public void Turn(Vector2 turnInputValue)
@@ -36,11 +43,8 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = targetRotation;
     }
 
-    private void Shoot()
+    public void SetMoveInputValue(Vector2 value)
     {
-        /*if (_playerInputMap.Combat.Shoot.IsPressed())
-        {
-            print("shoot");
-        }*/
+        _moveInputValue = value;
     }
 }

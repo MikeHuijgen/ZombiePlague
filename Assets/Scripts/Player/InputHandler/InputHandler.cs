@@ -21,7 +21,7 @@ public class InputHandler : MonoBehaviour
 
     private void Update()
     {
-        playerMovement.Move(_playerInputMap.Movement.Move.ReadValue<Vector2>());
+        playerMovement.SetMoveInputValue(_playerInputMap.Movement.Move.ReadValue<Vector2>());
         playerMovement.Turn(_playerInputMap.Movement.Turn.ReadValue<Vector2>());
         
         if (_playerInputMap.Combat.Shoot.triggered)
