@@ -5,25 +5,25 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float moveSpeed;
     [SerializeField] private float turnSpeed;
 
     private Rigidbody _rigidbody;
-    private Vector2 _moveInputValue;
+    private Vector2 _moveInputValue;    
+    private Vector2 _turnInputValue;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
-
-    public void Move(Vector2 moveInputValue)
+    
+    private void FixedUpdate()
     {
-        /*if (moveInputValue == Vector2.zero) return;
-        
-        transform.Translate(new Vector3(moveInputValue.x * speed * Time.deltaTime, 0, moveInputValue.y * speed * Time.deltaTime), Space.World);*/
+        Move();
+        Turn();
     }
 
-    private void FixedUpdate()
+    private void Move()
     {
         if (_moveInputValue == Vector2.zero)
         {
@@ -31,20 +31,27 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
         
-        _rigidbody.velocity = new Vector3(_moveInputValue.x * speed, 0, _moveInputValue.y * speed);
+        _rigidbody.velocity = new Vector3(_moveInputValue.x * moveSpeed, 0, _moveInputValue.y * moveSpeed);
     }
 
-    public void Turn(Vector2 turnInputValue)
+
+    private void Turn()
     {
-        if (turnInputValue == Vector2.zero) return;
+        if (_turnInputValue == Vector2.zero) return;
         
-        var targetRotation = Quaternion.LookRotation(new Vector3(turnInputValue.x, 0, turnInputValue.y));
+        var targetRotation = Quaternion.LookRotation(new Vector3(_turnInputValue.x, 0, _turnInputValue.y));
         targetRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-        transform.rotation = targetRotation;
+
+        _rigidbody.MoveRotation(targetRotation);
     }
 
     public void SetMoveInputValue(Vector2 value)
     {
         _moveInputValue = value;
+    }
+    
+    public void SetTurnInputValue(Vector2 value)
+    {
+        _turnInputValue = value;
     }
 }
