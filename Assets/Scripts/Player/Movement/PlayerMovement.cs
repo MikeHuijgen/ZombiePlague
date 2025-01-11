@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         Move();
         Turn();
     }
-
+    
     private void Move()
     {
         if (_moveInputValue == Vector2.zero)
