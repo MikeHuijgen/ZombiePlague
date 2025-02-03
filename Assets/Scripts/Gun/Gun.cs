@@ -4,12 +4,35 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    [SerializeField] private int damage;
+    [SerializeField] private GunData _gunData;
+    //[SerializeField] private 
 
-    //Even met een ray cast uiteindelijk veranderen naar projects of iets meer visual
+    private bool _canShoot;
+    
+    
     public void Shoot()
     {
-        if (!Physics.Raycast(transform.position, transform.forward, out RaycastHit hit)) return;
+        if (!_canShoot) return;
+
+        switch (_gunData.fireType)
+        {
+            case GunFireTypes.Single:
+                _canShoot = false;
+                print("Shoot");
+                break;
+            case GunFireTypes.Burst:
+                _canShoot = false;
+                for (int i = 0; i < _gunData.burstShotAmount; i++)
+                {
+                    print("Shoot");
+                }
+                break;
+            case GunFireTypes.Auto:
+                print("Shoot");
+                break;
+        }
+        
+        /*if (!Physics.Raycast(transform.position, transform.forward, out RaycastHit hit)) return;
 
         var distanceBetweenHit = Vector3.Distance(transform.position, hit.point);
         Debug.DrawRay(transform.position, transform.forward * distanceBetweenHit, Color.red, .5f);
@@ -17,6 +40,11 @@ public class Gun : MonoBehaviour
         if (!hit.transform.TryGetComponent(out Health health)) return;
         
         
-        health.TakeDamage(damage);
+        health.TakeDamage(_gunData.damage);*/
+    }
+
+    public void EnableShooting()
+    {
+        _canShoot = true;
     }
 }
