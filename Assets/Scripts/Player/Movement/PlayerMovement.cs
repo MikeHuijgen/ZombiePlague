@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float turnSpeed;
+    [SerializeField] private Animator playerAnimatorController;
 
     private Rigidbody _rigidbody;
     private Vector2 _moveInputValue;    
@@ -28,10 +29,14 @@ public class PlayerMovement : MonoBehaviour
         if (_moveInputValue == Vector2.zero)
         {
             _rigidbody.velocity = Vector3.zero;
+            playerAnimatorController.SetBool("IsWalking", false);
             return;
         }
         
         _rigidbody.velocity = new Vector3(_moveInputValue.x * moveSpeed, 0, _moveInputValue.y * moveSpeed);
+
+        if (playerAnimatorController.GetBool("IsWalking")) return;
+        playerAnimatorController.SetBool("IsWalking", true);
     }
 
 
