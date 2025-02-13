@@ -47,6 +47,6 @@ MonoBehaviour:
   lookAt: {fileID: 0}
   cameraOffsetSettings:
     xOffset: 0
-    yOffset: 14
+    yOffset: 16
     zOffset: -5
-  smoothSpeed: 6
+  smoothSpeed: 9

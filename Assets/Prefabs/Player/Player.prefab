@@ -114,7 +114,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 2
 --- !u!114 &8890275792801661417
 MonoBehaviour:
@@ -129,7 +129,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 2353708895330619153}
-  gun: {fileID: 0}
+  gun: {fileID: 8057289552227632350}
+  OnShootRelease:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8057289552227632350}
+        m_TargetAssemblyTypeName: Gun, Assembly-CSharp
+        m_MethodName: EnableShooting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2353708895330619153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,7 +241,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ed7306707a07d046bca0542eec2b0fd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8057289552227632350}
   m_SourcePrefab: {fileID: 100100000, guid: 8ed7306707a07d046bca0542eec2b0fd, type: 3}
 --- !u!4 &2658439009056065224 stripped
 Transform:
@@ -234,6 +253,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2553001458843345187}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3436102054683368562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8ed7306707a07d046bca0542eec2b0fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2553001458843345187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8057289552227632350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3436102054683368562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8448e9f2bc7d13b408a14ae5ffe7bbdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gunData: {fileID: 11400000, guid: 78ac482bb7572c14abd6a67bd14e01e7, type: 2}
 --- !u!1001 &4632199329729738753
 PrefabInstance:
   m_ObjectHideFlags: 0

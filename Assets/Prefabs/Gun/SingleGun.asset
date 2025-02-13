@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef841c1d5339fcc44b92bdb927ef85b4, type: 3}
-  m_Name: New Gun Data
+  m_Name: SingleGun
   m_EditorClassIdentifier: 
   damage: 0
   fireType: 0
-  burstShotAmount: 0
+  burstShotAmount: 3
